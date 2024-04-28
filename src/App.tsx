@@ -1,9 +1,14 @@
-import { RouterProvider } from "react-router";
-import router from "./router";
+import Router from "./router";
 import "./App.css"
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    // 组件路由
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  )
 }
 
 export default App
