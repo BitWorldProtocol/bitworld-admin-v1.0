@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Error404 from "../views/404";
-import Error403 from "../views/403";
-import Welcome from "../views/Welcome";
-import Login from "../views/Login";
+import Error404 from "@/views/404";
+import Error403 from "@/views/403";
+import Welcome from "@/views/Welcome";
+import Login from "@/views/Login";
 
 const router = [
   {
