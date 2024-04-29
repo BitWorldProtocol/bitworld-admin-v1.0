@@ -1,7 +1,20 @@
 import ReactDom  from "react-dom/client"
 import Loading from "./loading"
 
+let count = 0
+
 export const showLoading = () => {
-  const loading = document.getElementById('loading') as HTMLDivElement
-  ReactDom.createRoot(loading).render(<Loading />)
+  if(count === 0) {
+    const loading = document.createElement('div')
+    loading.setAttribute('id', 'loading')
+    ReactDom.createRoot(loading).render(<Loading />)
+  }
+  count++
 }
+
+export const hideLoading = () => {
+  if(count < 0) return
+  count--
+  if(count === 0) document.body.removeChild(document.getElementById('loading') as HTMLDivElement)
+}
+

@@ -1,13 +1,16 @@
 import { message } from "antd";
 import axios, { AxiosError } from "axios";
-import { showLoading } from "./loading";
+import { showLoading, hideLoading } from "./loading";
 
 // 创建实例
 const instance = axios.create({
   baseURL: '/api',
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    icode: '2012DB456283497B'
+  }
 })
 
 //请求拦截器
@@ -30,9 +33,8 @@ instance.interceptors.request.use(
 //响应拦截器
 instance.interceptors.response.use(
   response => {
-
     const data = response.data
-
+    hideLoading()
     if(data.code === 500001) {
       message.error(data.msg)
       localStorage.removeItem('token')
@@ -42,6 +44,11 @@ instance.interceptors.response.use(
       return Promise.reject(data)
     }
     return data.data
+  },
+  (error) => {
+    hideLoading()
+    message.error(error.message)
+    return Promise.reject(error.message)
   }
 )
 
