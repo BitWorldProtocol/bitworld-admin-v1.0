@@ -1,10 +1,11 @@
 import { message } from "antd";
 import axios, { AxiosError } from "axios";
 import { showLoading, hideLoading } from "./loading";
+import storage from "./storage";
 
 // 创建实例
 const instance = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_BASE_API as string,
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
   withCredentials: true,
@@ -17,10 +18,18 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     showLoading()
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
+    const token = storage.get('token')
     if(token) {
       config.headers.Authorization = "Token::" + token
     }
+
+    if(import.meta.env.VITE_MOCK === 'true') {
+      config.baseURL = import.meta.env.VITE_MOCK_API as string
+    } else {
+      config.baseURL = import.meta.env.VITE_BASE_API as string
+    }
+
     return {
       ...config
     }
