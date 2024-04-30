@@ -8,9 +8,9 @@ const instance = axios.create({
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
   withCredentials: true,
-  headers: {
-    icode: '2012DB456283497B'
-  }
+  // headers: {
+  //   icode: '2012DB456283497B'
+  // }
 })
 
 //请求拦截器
@@ -38,7 +38,7 @@ instance.interceptors.response.use(
     if(data.code === 500001) {
       message.error(data.msg)
       localStorage.removeItem('token')
-      location.href = '/login'
+      // location.href = '/login'
     } else if (data.code !== 0) {
       message.error(data.msg)
       return Promise.reject(data)
@@ -53,11 +53,11 @@ instance.interceptors.response.use(
 )
 
 export default {
-  get(url: string, params: any) {
+  get<T>(url: string, params?: object): Promise<T> {
     return instance.get(url, {params})
   },
 
-  post(url: string, params: any) {
+  post<T>(url: string, params?: object): Promise<T> {
     return instance.post(url, params)
   }
 }

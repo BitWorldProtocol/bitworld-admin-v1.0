@@ -4,10 +4,10 @@ import { useEffect } from "react"
 export default function Login() {
 
   useEffect(() => {
-    request.get("/users", {
+    request.post("/users", {
       id: 12345
-    }).catch(error => {
-      console.log(error)
+    }).then(res => {
+      // console.log(error)
     })
   }, [])
 
