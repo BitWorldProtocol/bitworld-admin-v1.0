@@ -2,7 +2,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import Error404 from "@/views/404";
 import Error403 from "@/views/403";
 import Welcome from "@/views/Welcome";
-import Login from "@/views/Login";
+import Login from "@/views/logo/Login";
 
 const router = [
   {

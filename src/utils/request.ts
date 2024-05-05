@@ -10,9 +10,9 @@ const instance = axios.create({
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
   withCredentials: true,
-  // headers: {
-  //   icode: '2012DB456283497B'
-  // }
+  headers: {
+    icode: '2012DB456283497B'
+  }
 })
 
 //请求拦截器
