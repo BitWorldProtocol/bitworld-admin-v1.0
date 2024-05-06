@@ -1,7 +1,8 @@
 import Router from "./router";
 import "./App.css"
 import { BrowserRouter } from "react-router-dom";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, App as AntdApp } from "antd";
+import AntdGlobal from "./utils/AntdGlobal";
 
 function App() {
   return (
@@ -11,9 +12,12 @@ function App() {
           colorPrimary: '#00b96b',
         }
       }}>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+        <AntdApp>
+          <AntdGlobal />
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+      </AntdApp>
     </ConfigProvider>
   )
 }

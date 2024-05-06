@@ -1,9 +1,9 @@
-import { message } from "antd";
 import axios, { AxiosError } from "axios";
 import { showLoading, hideLoading } from "./loading";
 import storage from "./storage";
 import env from "@/config";
 import { Result } from "@/types/api";
+import { message } from "./AntdGlobal";
 
 // 创建实例
 const instance = axios.create({
