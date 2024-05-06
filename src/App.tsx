@@ -1,13 +1,20 @@
 import Router from "./router";
 import "./App.css"
 import { BrowserRouter } from "react-router-dom";
+import { ConfigProvider } from "antd";
 
 function App() {
   return (
-    // 组件路由
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#00b96b',
+        }
+      }}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ConfigProvider>
   )
 }
 
