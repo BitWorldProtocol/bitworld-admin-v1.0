@@ -3,28 +3,24 @@ import axios, { AxiosError } from "axios";
 import { showLoading, hideLoading } from "./loading";
 import storage from "./storage";
 import env from "@/config";
+import { Result } from "@/types/api";
 
 // 创建实例
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API as string,
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
-  withCredentials: true,
-  headers: {
-    icode: '2012DB456283497B'
-  }
+  withCredentials: true
 })
 
-//请求拦截器
+//请求拦截器a
 instance.interceptors.request.use(
   config => {
     showLoading()
-    // const token = localStorage.getItem('token')
     const token = storage.get('token')
     if(token) {
       config.headers.Authorization = "Token::" + token
     }
-
+    config.headers.icode = "2012DB456283497B"
     if(env.mock) {
       config.baseURL = env.mockApi
     } else {
@@ -43,11 +39,12 @@ instance.interceptors.request.use(
 //响应拦截器
 instance.interceptors.response.use(
   response => {
-    const data = response.data
+    const data: Result = response.data
     hideLoading()
+    // 登录失效
     if(data.code === 500001) {
       message.error(data.msg)
-      localStorage.removeItem('token')
+      storage.remove('token')
       // location.href = '/login'
     } else if (data.code !== 0) {
       message.error(data.msg)
