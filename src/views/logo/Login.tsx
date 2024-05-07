@@ -20,7 +20,7 @@ export default function LoginFC() {
   return (
     <div className={styles.login}>
       <div className={styles.loginWrapper}>
-        <div className={styles.title}>系统登陆</div>
+        <div className={styles.title}>BitWorld Management Platform</div>
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -45,7 +45,7 @@ export default function LoginFC() {
 
           <Form.Item>
             <Button type="primary" block htmlType="submit" loading={loading}>
-              登陆
+              Login
             </Button>
           </Form.Item>
         </Form>
