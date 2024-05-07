@@ -15,7 +15,7 @@ const instance = axios.create({
 //请求拦截器a
 instance.interceptors.request.use(
   config => {
-    showLoading()
+    if(config.showLoading) showLoading()
     const token = storage.get('token')
     if(token) {
       config.headers.Authorization = "Token::" + token
@@ -47,8 +47,13 @@ instance.interceptors.response.use(
       storage.remove('token')
       // location.href = '/login'
     } else if (data.code !== 0) {
-      message.error(data.msg)
-      return Promise.reject(data)
+      // 自定义报错提示，不是框架本身提供的报错
+      if(response.config.showError === false) {
+        return Promise.reject(data)
+      } else {
+        message.error(data.msg)
+        return Promise.reject(data)
+      }
     }
     return data.data
   },
@@ -59,12 +64,17 @@ instance.interceptors.response.use(
   }
 )
 
+interface IConfig {
+  showLoading?: boolean
+  showError?: boolean
+}
+
 export default {
-  get<T>(url: string, params?: object): Promise<T> {
-    return instance.get(url, {params})
+  get<T>(url: string, params?: object, options: IConfig = { showLoading: true, showError: true}): Promise<T> {
+    return instance.get(url, { params, ...options })
   },
 
-  post<T>(url: string, params?: object): Promise<T> {
-    return instance.post(url, params)
+  post<T>(url: string, params?: object, options: IConfig = { showLoading: true, showError: true}): Promise<T> {
+    return instance.post(url, params, options)
   }
 }

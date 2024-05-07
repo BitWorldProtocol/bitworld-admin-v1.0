@@ -3,6 +3,6 @@ import request from "@/utils/request";
 
 export default {
   login(params: Login.params) {
-    return request.post("/users/login", params);
+    return request.post("/users/login", params, { showLoading: false});
   }
 }
