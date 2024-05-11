@@ -13,12 +13,12 @@ const SideMenu = () => {
 
   const items = [
     {
-      label: '工作台',
+      label: 'WorkBench',
       key: '1',
       icon: <DesktopOutlined />
     },
     {
-      label: '系统管理',
+      label: 'Setting',
       key: '2',
       icon: <SettingOutlined />,
       children: [

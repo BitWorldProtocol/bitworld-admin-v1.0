@@ -31,9 +31,9 @@ const NavHeader = () => {
         <Breadcrumb items={breadList} style={{marginLeft: 10}} />
       </div>
       <div className="right">
-        <Switch checkedChildren="暗黑" unCheckedChildren="默认" style={{marginRight: 10}} />
+        <Switch checkedChildren="Dark" unCheckedChildren="Default" style={{marginRight: 10}} />
         <Dropdown menu={{items}} trigger={['click']}>
-          <span className={styles.nickName}>个人中心</span>
+          <span className={styles.nickName}>Individual Center</span>
         </Dropdown>
       </div>
     </div>
