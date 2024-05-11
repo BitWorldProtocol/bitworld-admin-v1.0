@@ -9,7 +9,10 @@ import { message } from "./AntdGlobal";
 const instance = axios.create({
   timeout: 8000,
   timeoutErrorMessage: '请求超时，请稍后再试',
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    icode: "2012DB456283497B"
+  }
 })
 
 //请求拦截器a
@@ -20,7 +23,6 @@ instance.interceptors.request.use(
     if(token) {
       config.headers.Authorization = "Token::" + token
     }
-    config.headers.icode = "2012DB456283497B"
     if(env.mock) {
       config.baseURL = env.mockApi
     } else {

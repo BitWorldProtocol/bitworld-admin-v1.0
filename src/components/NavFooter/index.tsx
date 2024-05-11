@@ -11,10 +11,6 @@ const NavFooter = () => {
         <a href='https://coding.imooc.com/class/644.html' target='_blank' rel='noreferrer'>
           BitWorld Protocol PlatForm
         </a>
-        <span className='gutter'>|</span>
-        <a href='https://coding.imooc.com/class/397.html' target='_blank' rel='noreferrer'>
-          BitWorld Protocol Mall PlatForm
-        </a>
       </div>
       <div>Copyright ©2024 BitWorld Protocol All Rights Reserved.</div>
     </div>
