@@ -5,6 +5,7 @@ import { TinyColor } from '@ctrl/tinycolor';
 import { Login } from "@/types/api";
 import storage from "@/utils/storage";
 import { useState } from "react";
+import store from "@/store";
 
 const colors3 = ['#40e495', '#30dd8a', '#2bb673'];
 const getHoverColors = (colors: string[]) =>
@@ -20,6 +21,7 @@ export default function LoginFC() {
       const data = await api.login(values)
       setLoading(false)
       storage.set('token', data)
+      store.token = data
       message.success('登陆成功')
       const params = new URLSearchParams(location.search)
       setTimeout(() => {

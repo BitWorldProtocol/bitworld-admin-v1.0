@@ -4,7 +4,7 @@ import request from "@/utils/request";
 export default {
   // 登陆
   login(params: Login.params) {
-    return request.post("/users/login", params, { showLoading: false});
+    return request.post<string>("/users/login", params, { showLoading: false});
   },
   // 获取用户信息
   getUserInfo() {
