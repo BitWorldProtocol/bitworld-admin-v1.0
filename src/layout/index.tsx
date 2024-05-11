@@ -2,8 +2,9 @@ import React from 'react';
 import { Layout, theme } from 'antd';
 import NavHeader from '@/components/NavHeader';
 import NavFooter from '@/components/NavFooter';
+import Menu from '@/components/Menu';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const App: React.FC = () => {
 
@@ -23,7 +24,7 @@ const App: React.FC = () => {
           console.log(collapsed, type);
         }}
       >
-      侧边栏
+      <Menu />
       </Sider>
       <Layout>
         <NavHeader />
