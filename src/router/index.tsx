@@ -2,6 +2,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import Error404 from "@/views/404";
 import Error403 from "@/views/403";
 import Welcome from "@/views/welcome";
+import DashBoard from "@/views/dashboard";
 import Login from "@/views/login/Login";
 import Layout from "@/layout";
 
@@ -20,6 +21,10 @@ export const router = [
       {
         path: "/welcome",
         element: <Welcome />
+      },
+      {
+        path: "/dashboard",
+        element: <DashBoard />
       }
     ]
   },
