@@ -2,10 +2,13 @@ import { MenuFoldOutlined } from "@ant-design/icons"
 import { Breadcrumb, Dropdown, Switch } from "antd"
 import type { MenuProps } from "antd"
 import styles from "./index.module.less"
-import store from "@/store"
+import { useStore } from "@/store"
 import storage from "@/utils/storage"
 
 const NavHeader = () => {
+  // 这么做的目的是只更新 userInfo的值
+  const userInfo = useStore(state => state.userInfo)
+
   const breadList = [
     {
       title: '首页',
@@ -18,7 +21,7 @@ const NavHeader = () => {
   const items: MenuProps['items'] = [
     {
       key: 'email',
-      label: '邮箱：' + store.userInfo.userEmail
+      label: '邮箱：' + userInfo.userEmail
     },
     {
       key: 'logout',
@@ -42,7 +45,7 @@ const NavHeader = () => {
       <div className="right">
         <Switch checkedChildren="Dark" unCheckedChildren="Default" style={{marginRight: 10}} />
         <Dropdown menu={{ items, onClick }} trigger={['click']}>
-          <span className={styles.nickName}>{store.userInfo.userName}</span>
+          <span className={styles.nickName}>{userInfo.userName}</span>
         </Dropdown>
       </div>
     </div>

@@ -18,7 +18,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.23.0",
     "react-router-dom": "^6.23.0",
-    "resso": "^0.17.0"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

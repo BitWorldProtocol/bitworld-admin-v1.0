@@ -6,11 +6,13 @@ import Menu from '@/components/Menu';
 import { Outlet } from 'react-router-dom';
 import styles from './index.module.less';
 import api from '@/api';
-import store from '@/store';
+import { useStore } from '@/store';
 
 const { Content, Sider } = Layout;
 
 const App: React.FC = () => {
+
+  const updateUserInfo = useStore(state => state.updateUserInfo)
 
   useEffect(() => {
     getUserInfo()
@@ -18,7 +20,7 @@ const App: React.FC = () => {
 
   const getUserInfo = async () => {
     const data = await api.getUserInfo()
-    store.updateUserInfo(data)
+    updateUserInfo(data)
   }
 
   return (
