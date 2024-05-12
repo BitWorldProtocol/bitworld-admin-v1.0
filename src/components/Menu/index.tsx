@@ -2,10 +2,11 @@ import { DesktopOutlined, SettingOutlined, TeamOutlined } from "@ant-design/icon
 import { Menu } from "antd"
 import styles from "./index.module.less"
 import { useNavigate } from "react-router"
+import { useStore } from "@/store"
 
 const SideMenu = () => {
-
   const navigate = useNavigate()
+  const collapsed = useStore(state => state.collapsed)
 
   const handleClickLogo = () => {
     navigate("/welcome")
@@ -35,9 +36,16 @@ const SideMenu = () => {
     <div>
       <div className={styles.logo}>
         <img src="/imgs/logo.png" className={styles.img} onClick={handleClickLogo} />
-        <span>BitWorld Protocol</span>
+        { collapsed ? '' : <span>BitWorld Protocol</span>}
       </div>
-      <Menu defaultSelectedKeys={["1"]}  mode="inline" theme="dark" items={items} />
+      <Menu
+        defaultSelectedKeys={["1"]}
+        mode="inline"
+        theme="dark"
+        style={{
+          width: collapsed ? 80 : 'auto'
+        }}
+        items={items} />
     </div>
   )
 }

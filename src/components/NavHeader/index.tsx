@@ -1,4 +1,4 @@
-import { MenuFoldOutlined } from "@ant-design/icons"
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons"
 import { Breadcrumb, Dropdown, Switch } from "antd"
 import type { MenuProps } from "antd"
 import styles from "./index.module.less"
@@ -7,7 +7,11 @@ import storage from "@/utils/storage"
 
 const NavHeader = () => {
   // 这么做的目的是只更新 userInfo的值
-  const userInfo = useStore(state => state.userInfo)
+  // const userInfo = useStore(state => state.userInfo)
+  // const collapsed = useStore(state => state.collapsed)
+
+  // 解构赋值
+  const { userInfo, collapsed, updateCollapsed} = useStore()
 
   const breadList = [
     {
@@ -36,10 +40,16 @@ const NavHeader = () => {
     }
   }
 
+  const toggleCollapsed = () => {
+    updateCollapsed()
+  }
+
   return (
     <div className={styles.navHeader}>
       <div className={styles.left}>
-        <MenuFoldOutlined />
+        <div onClick={toggleCollapsed}>
+          { collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+        </div>
         <Breadcrumb items={breadList} style={{marginLeft: 10}} />
       </div>
       <div className="right">
