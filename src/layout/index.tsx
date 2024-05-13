@@ -31,12 +31,10 @@ const App: React.FC = () => {
         </Sider>
         <Layout>
           <NavHeader />
-          <Content className={styles.content}>
-            <div className={styles.wrapper}>
+          <div className={styles.wrapper}>
              <Outlet></Outlet>
             </div>
             <NavFooter />
-          </Content>
         </Layout>
       </Layout>
     </Watermark>
