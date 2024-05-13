@@ -2,8 +2,13 @@ import { Button, Card, Descriptions } from 'antd';
 import styles from './index.module.less';
 import * as echarts from 'echarts';
 import { useEffect } from 'react';
+import { useStore } from '@/store';
+import { formateState } from '@/utils';
 
 export default function DashBoard() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const userInfo = useStore(state => state.userInfo)
+
 
   useEffect(() => {
     const lineChartDom = document.getElementById('lineChart');
@@ -138,14 +143,14 @@ export default function DashBoard() {
   return (
     <div className={styles.dashboard}>
       <div className={styles.userInfo}>
-        <img className={styles.userImg} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+        <img className={styles.userImg} src={userInfo.userImg} />
         <Descriptions title="欢迎新同学，每天都要开心！">
-          <Descriptions.Item label="用户ID">100001</Descriptions.Item>
-          <Descriptions.Item label="邮箱">test@mars.com</Descriptions.Item>
-          <Descriptions.Item label="状态">在职</Descriptions.Item>
-          <Descriptions.Item label="手机号">13761566976</Descriptions.Item>
-          <Descriptions.Item label="岗位">前端工程师</Descriptions.Item>
-          <Descriptions.Item label="部门">大前端</Descriptions.Item>
+          <Descriptions.Item label="用户ID">{userInfo.userId}</Descriptions.Item>
+          <Descriptions.Item label="邮箱">{userInfo.userEmail}</Descriptions.Item>
+          <Descriptions.Item label="状态">{formateState(userInfo.state)}</Descriptions.Item>
+          <Descriptions.Item label="手机号">{userInfo.mobile}</Descriptions.Item>
+          <Descriptions.Item label="岗位">{userInfo.job}</Descriptions.Item>
+          <Descriptions.Item label="部门">{userInfo.deptName}</Descriptions.Item>
         </Descriptions>
       </div>
       <div className={styles.report}>
