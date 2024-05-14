@@ -47,7 +47,7 @@ instance.interceptors.response.use(
     if(data.code === 500001) {
       message.error(data.msg)
       storage.remove('token')
-      // location.href = '/login'
+      location.href = '/login?callback=' + encodeURIComponent(location.href)
     } else if (data.code !== 0) {
       // 自定义报错提示，不是框架本身提供的报错
       if(response.config.showError === false) {

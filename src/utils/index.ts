@@ -5,13 +5,15 @@
 /**
  * 格式化金额
 */
-export const formatMoney = (num: number | string) => {
+export const formatMoney = (num?: number | string) => {
+  if(!num) return '0.00'
   const a = parseFloat(num.toString())
   return a.toLocaleString('zh-CN', { style: 'currency', currency: 'CNY' })
 }
 
 //格式化数字 正则表达式实现
-export const formateNum = (num: number | string) => {
+export const formateNum = (num?: number | string) => {
+  if(!num) return 0
   const a = num.toString()
   if(a.indexOf(".") > -1) return a.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
   return a.replace(/(\d)(?=(\d{3})+$)/g, '$1,')
