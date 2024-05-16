@@ -5,6 +5,7 @@ import Welcome from "@/views/welcome";
 import DashBoard from "@/views/dashboard";
 import Login from "@/views/login/Login";
 import Layout from "@/layout";
+import User from "@/views/system/user";
 
 export const router = [
   {
@@ -25,6 +26,10 @@ export const router = [
       {
         path: "/dashboard",
         element: <DashBoard />
+      },
+      {
+        path: "/userList",
+        element: <User />
       }
     ]
   },
