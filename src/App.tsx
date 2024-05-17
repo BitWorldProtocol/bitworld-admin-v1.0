@@ -1,4 +1,4 @@
-import "./App.css"
+import "./App.less"
 import { RouterProvider } from "react-router-dom";
 import { ConfigProvider, App as AntdApp } from "antd";
 import AntdGlobal from "./utils/AntdGlobal";

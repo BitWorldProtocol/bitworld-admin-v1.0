@@ -1,17 +1,56 @@
-import { Button } from "antd"
+import { Button, Form, Table, Input } from "antd"
 
 export default function UserList() {
+
+  const dataSource = [
+    {
+      key: '1',
+      name: '胡彦斌',
+      age: 32,
+      address: '西湖区湖底公园1号',
+    },
+    {
+      key: '2',
+      name: '胡彦祖',
+      age: 42,
+      address: '西湖区湖底公园1号',
+    },
+  ];
+
+  const columns = [
+    {
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
+
   return (
     <div className="user-list">
-      <div className="search-form"></div>
+      <Form className="search-form" layout="inline">
+        <Form.Item name="userId" label="用户ID">
+          <Input />
+        </Form.Item>
+      </Form>
       <div className="base-table">
         <div className="header-wrapper">
           <div className="title">用户列表</div>
           <div className="action">
-            <Button>新增</Button>
-            <Button>批量删除</Button>
+            <Button type="primary">新增</Button>
+            <Button type="primary" danger>批量删除</Button>
           </div>
         </div>
+        <Table dataSource={dataSource} columns={columns} />;
       </div>
     </div>
   )
