@@ -1,4 +1,4 @@
-import { Login, User } from "@/types/api";
+import { Login, ResultData, User } from "@/types/api";
 import request from "@/utils/request";
 import { Dashboard } from "@/types/api";
 
@@ -31,5 +31,9 @@ export default {
   getRadarData() {
     return request.get<Dashboard.radarData>("/order/dashboard/getRadarData");
   },
+  // 获取用户列表
+  getUserList() {
+    return request.get<ResultData<User.UserItem>>("/users/list");
+  }
 
 }
