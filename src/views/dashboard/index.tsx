@@ -7,6 +7,9 @@ import api from '@/api';
 import { Dashboard } from '@/types/api';
 import { useCharts } from '@/hook/useCharts';
 
+/**
+ * 首页
+ */
 export default function DashBoard() {
 
   const [report, setReport] = useState<Dashboard.ReportData>()
